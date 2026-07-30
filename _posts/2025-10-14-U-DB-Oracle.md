@@ -9,6 +9,7 @@ tags:
 layout: post
 ---
 
+
 ## File -> Oracle Database Table with Python
 여러 DB 툴이 있기 때문에 그것들을 사용해도 된다. Oracle DB 설치는 Docker 등을 활용하면 좋다.
 
