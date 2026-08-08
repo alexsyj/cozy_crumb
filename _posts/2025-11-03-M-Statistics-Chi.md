@@ -1,7 +1,8 @@
 ---
 title: Chi-Square Test
 img_path: /assets/images/
-author: Raymond
+author: Alex
+math: true
 date: 2025-11-02
 category: [Manufacturing, Statistics, Descriptive, Chi-Square Test]
 tags:

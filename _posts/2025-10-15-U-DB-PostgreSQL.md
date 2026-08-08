@@ -1,7 +1,8 @@
 ---
 title: PostgreSQL Handling for Analysis
 img_path: /assets/images/
-author: Raymond
+author: Alex
+math: true
 date: 2025-10-15
 category: [Utility, Database, PostgreSQL]
 tags:
@@ -159,7 +160,6 @@ try:
 except Exception as e:
     print(f"오류 발생: {e}")
 ```
-
 
 ---------
 
