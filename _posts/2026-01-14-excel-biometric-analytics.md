@@ -49,6 +49,8 @@ Analyzing the **Stress per 1k Steps** metric reveals how different activity inte
 
 ## Project Resources
 
-You can view and download the raw data, cleaning logic, and final dashboard directly from my repository:
+You can view and download the raw data, cleaning logic, and final dashboard directly from my repository: 
+
+Enter the essets folder upon clicking the link below and you'll see all the files I've used.
 
 📂 [View Project Files on GitHub](https://github.com/alexsyj/cozy_crumb)
