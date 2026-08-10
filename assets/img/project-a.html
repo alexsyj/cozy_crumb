@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project A: Hospital SQL Analysis</title>
+</head>
+<body>
+    <h1>Hospital Database Management & Patient Risk Analysis</h1>
+    
+    <p>In this project, I took two separate datasets (spreadsheets) containing patient demographics and clinical visit records and imported them into a PostgreSQL database..</p>
+    <p>I used SQL to "connect the dots" between these files to find administrative gaps and clinical risks that aren't obvious in a standard spreadsheet.</p>
+    <p>In summary, the goal was to reorganize patient information, identify patients missing follow-up appointments, and prioritize high-risk cases based on physiological data.</p>
+	<p></p>
+	<section>
+        <h2>Project Resources</h2>
+        <p>You can find the raw data I used in my repository titled :"Hospital Management System.xlsx"</p>
+        <p>📂 <a href="https://github.com/alexsyj" class="file-link">View Project Files on GitHub</a></p>
+    </section>
+
+    <!-- Section 1 -->
+    <h3>1. Relational Database Mapping</h3>
+    <p>To begin the analysis, I translated raw CSV data into a structured relational format within PostgreSQL. I defined the table schemas to ensure that each data point—from patient IDs to physiological metrics—was stored with the correct data type (such as DECIMAL for precision and DATE for visit tracking). 
+	   This foundation allows for accurate querying across separate datasets.</p>
+    
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my SQL Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+CREATE TABLE PATIENTS (
+    PATIENT_ID INT PRIMARY KEY,
+    FNAME VARCHAR(50) NOT NULL,
+    LNAME VARCHAR(50) NOT NULL,
+    GENDER VARCHAR(10),
+    DATE_OF_BIRTH DATE NOT NULL,
+    CONTACT_NO VARCHAR(20) UNIQUE,
+    PT_ADDRESS TEXT
+);
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Query Result:</i></p>
+        <img src="patient.jpg" alt="SQL Query Result" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+    
+    <p>The second sheet, records is brought into sql by creating the table for it.</p>
+
+      <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my SQL Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+CREATE TABLE RECORDS (
+	RECORD_ID INT PRIMARY KEY,
+	DOCT_ID INT,
+	PATIENT_ID INT,
+	VISIT_DATE DATE,
+	CURR_WEIGHT DECIMAL(5, 2),
+	CURR_HEIGHT DECIMAL(5, 2),
+	CURR_BLOOD_PRESSURE VARCHAR(20),
+	CURR_TEMP_F DECIMAL(4, 1),
+	DIAGNOSIS TEXT,
+	TREATMENT TEXT,
+	NEXT_VISIT DATE
+);
+
+---Create Records table holding these columns.
+
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Query Result:</i></p>
+        <img src="records.jpg" alt="SQL Query Result" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>2. Find the patients information and their history</h3>
+    <p>Join two seperate tables with the shared column patient_id to find the necessary information</p>
+
+     <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my SQL Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+SELECT
+p.fname,
+p.lname,
+r.diagnosis,
+r.visit_date
+FROM patients p
+JOIN records r ON p.patient_id = r.patient_id;
+--- patients full name, diagnosis, and their visit dates ---
+--- Join diagnosis and visit date columns of this sheet onto the patients sheet but only selecting 4 columns specified above.
+
+
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Query Result:</i></p>
+        <img src="firstjoin.jpg" alt="SQL Query Result" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+
+    <h3>3. Find the patients whom has yet to book the next visit.</h3>
+    <p>Join two seperate tables with the shared column patient_id to find the necessary information</p>
+
+     <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my SQL Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+SELECT
+p.fname,
+p.lname,
+r.diagnosis,
+r.visit_date,
+p.contact_no
+FROM patients p
+JOIN records r ON p.patient_id = r.patient_id
+WHERE r.next_visit is NULL
+--call them and schedule next visit because their next schedule is empty
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Query Result:</i></p>
+        <img src="patient_no_schedule.jpg" alt="SQL Query Result" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+
+    <h3>4. Find the patients whose temperature is abnormally high enough to demand priority.</h3>
+    <p>Join two seperate tables with the shared column patient_id to find the necessary information</p>
+
+     <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my SQL Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+SELECT
+p.patient_id,
+p.fname,
+p.lname,
+r.diagnosis,
+r.curr_temp_f
+FROM records r
+JOIN patients p ON r.patient_id = p.patient_id
+WHERE r.curr_temp_f > 101.0;
+--- Full name, patient_id, temperature above 101F in risk patients to focus attention on---
+
+
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Query Result:</i></p>
+        <img src="priority.jpg" alt="SQL Query Result" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+
+    
+    <!-- Navigation -->
+    <p style="margin-top: 50px;">
+        <a href="index.html">← Back to Home</a>
+    </p>
+</body>
+</html>

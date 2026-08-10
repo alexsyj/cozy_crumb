@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project B: Smartwatch Health Analytics</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 40px; line-height: 1.6; background-color: #fafafa; }
+        h1, h2, h3 { color: #2c3e50; }
+        .stats-box { background-color: #e8f0fe; padding: 20px; border-radius: 8px; border-left: 5px solid #1a73e8; margin: 20px 0; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; margin-top: 10px; }
+        .file-link { font-weight: bold; color: #1a73e8; text-decoration: none; }
+        .file-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Smartwatch Health Data: From Raw CSV to Clinical Insights</h1>
+    
+    <p>This project demonstrates a full data pipeline within Microsoft Excel—starting from a messy <b>CSV export</b> and ending with an <b>interactive dashboard</b> that identifies correlations between activity, sleep, and stress.</p>
+
+    <section>
+        <h2>1. Data Preparation & Cleaning</h2>
+        <div style="margin-top: 20px;">
+    <h4>Raw Data Preview (CSV)</h4>
+    <p>Before cleaning: Notice the unformatted headers and raw sensor values.</p>
+    <img src="unclean_preview.png" alt="Screenshot of raw CSV data" style="border: 2px solid #ecc; padding: 5px;">
+</div>
+        <p>The original file, <code>unclean_smartwatch_health_data.csv</code>, contained raw sensor logs with inconsistent formatting and missing values.</p>
+        
+        <div class="stats-box">
+            <strong>Cleaning Workflow:</strong>
+            <ul>
+                <li>Imported raw CSV into Excel and converted to Table format for structured referencing.</li>
+                <li>Used <b>Power Query</b> to standardize column headers and fix data types.</li>
+                <li>Handled missing Heart Rate and Blood Oxygen values to ensure statistical accuracy.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Feature Engineering</h2>
+        <div style="margin-top: 20px;">
+    <h4>Processed Data (XLSX)</h4>
+    <p>After processing: Headers are cleaned, and new calculated columns have been engineered.</p>
+    <img src="cleaned_data_preview.png" alt="Screenshot of cleaned Excel data" style="border: 2px solid #cee; padding: 5px;">
+</div>
+        <p>I moved beyond basic cleaning to create <b>derived metrics</b> that provide deeper context into user health:</p>
+        
+        <ul>
+            <li><b>Stress Category:</b> A qualitative label (Low, Medium, High) based on raw stress scores.</li>
+            <li><b>Stress per 1k Steps:</b> A custom efficiency metric to measure the physical impact of movement on stress reduction.</li>
+        </ul>
+        <p><i>Resulting file: <code>clean_data_1.xlsx</code></i></p>
+    </section>
+
+    <section>
+        <h2>3. Key Visual Analysis</h2>
+        
+        <div style="margin-bottom: 30px;">
+            <h3>Sleep Duration vs. Stress Level</h3>
+            <p>This Pivot Chart identifies the "recovery point" where stress levels drop significantly relative to sleep hours.</p>
+            <img src="sleep_vs_stress.png" alt="Pivot Chart showing Sleep vs Stress">
+        </div>
+
+        <div style="margin-bottom: 30px;">
+            <h3>Activity Impact on Stress</h3>
+            <p>Analyzing the <b>Stress per 1k Steps</b> metric reveals how different activity intensities affect physiological strain.</p>
+            <img src="stress_efficiency.png" alt="Pivot Chart showing Activity Efficiency">
+        </div>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Project Resources</h2>
+        <p>You can find the raw data, the cleaning logic, and the final dashboard in my repository:</p>
+        <p>📂 <a href="https://github.com/alexsyj" class="file-link">View Project Files on GitHub</a></p>
+    </section>
+
+    <p style="margin-top: 50px;"><a href="index.html">← Back to Home</a></p>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project C: Clinical Diabetes Analysis</title>
+</head>
+<body>
+    <h1>Clinical Diabetes Risk Factor Analysis</h1>
+    
+    <p>In this project, I utilized Python and the Pandas library to conduct a comprehensive analysis of patient health metrics to identify key indicators of Diabetes.</p>
+    <p>I focused on data cleaning, feature engineering based on clinical thresholds (HbA1c), and demographic stratification to pinpoint high-risk patient segments.</p>
+    <p>The goal was to transform raw physiological data into actionable medical insights, specifically exploring the correlation between age, gender, and diabetic status.</p>
+    <p>The File I used is titled "diabetes_unclean.csv" and can be found in my github repository, with the link provided at the bottom of this page.</p>
+
+    <h3>1. Environment Setup and Data Exploration</h3>
+    <p>I began by importing the necessary libraries and loading the dataset to inspect its structure and initial statistical distribution.</p>
+    
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('diabetes_unclean.csv')
+df.head()
+# show 5 rows
+
+df.info()
+#Summary of the data read
+
+df.describe()
+#data statistics of each column
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="df_head_initial.png" alt="Output of df.head()" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="df_info_output.png" alt="Output of df.info()" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="df_describe_initial.png" alt="Output of df.describe()" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>2. Auditing and Handling Missing Values</h3>
+    <p>I performed a multi-step audit for missing values to ensure the integrity of the clinical data before dropping incomplete rows.</p>
+    
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+df.isna().sum()
+#total number of missing values in each column
+
+df[df.isna().any(axis=1)]
+# search for any rows with missing cell value.
+
+df = df.dropna()
+#dropped rows with empty cells
+
+df.isna().sum()
+#Now there isn't any empty cells
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="isna_initial_check.png" alt="Initial NaNs" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="nan_rows_found.png" alt="Rows with NaNs" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="isna_verification.png" alt="Verification of 0 NaNs" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>3. Column Normalization and Duplicate Identification</h3>
+    <p>I renamed non-standard columns for clarity and conducted recursive checks for duplicate patient records.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+df.rename(columns={'No_Pation': 'Patient_ID'}, inplace=True)
+display(df.head())
+#changed the column No_Pation to Patient_ID and displayed 5 rows
+
+print(df.duplicated('Patient_ID').sum())
+#Search for duplicates
+
+df.drop_duplicates('Patient_ID', inplace=True)
+#Drop duplicate patients using their ID
+print(df.duplicated('Patient_ID').sum())
+#Now there isn't any duplicate patient that appears
+
+print(df.duplicated().sum())
+#checking for overall rows that are dups.
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="renamed_head_display.png" alt="Display of renamed head" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="duplicate_print_1.png" alt="Print output of first duplicate check" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="duplicate_print_2.png" alt="Print output after dropping duplicates" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="global_dup_check.png" alt="Global duplicate check output" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>4. Final Categorical Correction and Readiness Check</h3>
+    <p>After targeting and correcting a specific gender labeling error, I performed a final statistical summary to confirm the data was ready for visualization.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+row_that_is_wrong = df[(df['Gender'] != 'M') & (df['Gender'] != 'F')]
+row_that_is_wrong
+#find the row that has their gender not labeled as M or F
+
+df.loc[df['Patient_ID']== 4543, 'Gender'] = 'F'
+#Find patientID 4543 and replace the Gender of the row to F.
+
+df.describe()
+#Seeing how many rows were removed
+#Now we are ready
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="wrong_gender_row.png" alt="Targeted row for correction" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="final_ready_describe.png" alt="Final describe output" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>5. General Population Gender Distribution</h3>
+    <p>I began the visual phase by analyzing the overall gender balance of the entire study cohort.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+sns.set_style('darkgrid')
+plt.figure(figsize=(6,4))
+plt.pie(df['Gender'].value_counts(), labels=df['Gender'].value_counts().index, autopct='%1.1f%%')
+plt.title('Gender Distribution')
+plt.show()
+#Data holds 56.5% of Males and 43.5% Females
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="overall_gender_chart.png" alt="Overall Gender Pie Chart" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>6. Engineering Clinical Risk Status</h3>
+    <p>I mapped raw HbA1c values to medical categories (Normal, Pre-diabetes, Diabetes) and verified the new data structure.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+conditions = [
+    (df['HbA1c'] < 5.7),
+    (df['HbA1c'] >=5.7 ) & (df['HbA1c'] < 6.5),
+    (df['HbA1c'] >= 6.5)
+]
+values = ['Normal', 'Pre-diabetes', 'Diabetes']
+#Create a condition to label diabetes status.
+
+df['Diabetes_Status'] = np.select(conditions, values, default='Unknown')
+df
+#Created a new column Diabetes_Status using the condition we just made.
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="df_with_diabetes_status.png" alt="DataFrame with status column" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>7. Targeted Analysis: Diabetic Demographic Breakdown</h3>
+    <p>I isolated the diabetic group to examine the raw counts and gender split within this specific population.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+diabetes_by_gender = df[df['Diabetes_Status'] == 'Diabetes']
+Gender_Count = diabetes_by_gender['Gender'].value_counts()
+print("Overall Diabetes Patients Gender Counts:")
+print(Gender_Count)
+
+plt.figure(figsize=(6,4))
+plt.pie(Gender_Count, labels= Gender_Count.index, autopct='%1.1f%%')
+plt.title('Gender Distribution of All Diabetes Patients')
+plt.show()
+
+print(Gender_Count)
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="diabetic_print_counts.png" alt="Print output of diabetic counts" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px;">
+        <img src="all_diabetes_gender_pie.png" alt="Pie Chart of diabetic gender distribution" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>8. Visualizing Age as a Dominant Risk Variable</h3>
+    <p>I categorized the diabetic population into age divisions, which immediately revealed a heavy skew toward the Senior demographic.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+diabetes_patients = df[df['Diabetes_Status'] == 'Diabetes']
+age_division = [
+    (diabetes_patients['AGE'] < 35),
+    (diabetes_patients['AGE'] >= 35 ) & (diabetes_patients['AGE'] < 50),
+    (diabetes_patients['AGE'] >= 50)
+]
+age_group = ['Youth', 'Middle Age', 'Senior']
+
+plt.figure(figsize=(10,6))
+sns.countplot(x=np.select(age_division, age_group, default='Unknown'), data=diabetes_patients)
+plt.title('Age Division of Patients')
+plt.xlabel('Age Division')
+plt.ylabel('Count')
+plt.show()
+#Chart shows Diabetes is way more frequent for those ages equal or above 50.
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="age_group_countplot.png" alt="Countplot of Age Groups" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>9. Senior-Specific Gender Distribution</h3>
+    <p>Finally, I examined the gender split specifically within the Senior group (Age 50+) to compare it against the overall diabetic group.</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+diabetes_by_gender_Senior = df[(df['Diabetes_Status'] == 'Diabetes') & (df['AGE'] >= 50)]
+Gender_Count_Senior = diabetes_by_gender_Senior['Gender'].value_counts()
+
+plt.figure(figsize=(6,4))
+plt.pie(Gender_Count_Senior, labels= Gender_Count_Senior.index, autopct='%1.1f%%')
+plt.title('Gender Distribution of Diabetes Patients in Senior Age Group')
+plt.show()
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="senior_gender_pie_final.png" alt="Senior Specific Pie Chart" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <h3>10. Final Population Verification</h3>
+    <p>I concluded with a raw count verification to audit why the Senior pie chart closely mirrored the overall diabetic results!</p>
+
+    <details>
+        <summary style="cursor: pointer; color: #1a73e8; font-weight: bold;">
+            Click here to see my Python Code
+        </summary>
+        <div style="margin-top: 10px; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+            <pre><code>
+print(f"Total Diabetic Patients: {len(df[df['Diabetes_Status'] == 'Diabetes'])}")
+print(f"Senior Diabetic Patients: {len(diabetes_by_gender_Senior)}")
+# Was wondering why the pie chart is so identical to the previous one so had to check
+            </code></pre>
+        </div>
+    </details>
+    <div style="margin-top: 20px;">
+        <p><i>Code Feedback:</i></p>
+        <img src="final_audit_prints.png" alt="Final Print Outputs" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <section>
+        <h2>Project Resources</h2>
+        <p>You can find the raw data I used in my repository titled :"diabetes_unclean.csv"</p>
+        <p>📂 <a href="https://github.com/alexsyj" class="file-link">View Project Files on GitHub</a></p>
+    </section>
+    <p style="margin-top: 50px;">
+        <a href="index.html">← Back to Home</a>
+    </p>
+</body>
+</html>
