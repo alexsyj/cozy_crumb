@@ -49,8 +49,6 @@ Analyzing the **Stress per 1k Steps** metric reveals how different activity inte
 
 ## Project Resources
 
-Download the dataset files used in this pipeline:
-* 📄 [Download Raw CSV File](/assets/unclean_smartwatch_health_data.csv)
-* 📊 [Download Cleaned Excel Dataset](/assets/clean_data_1.xlsx)
+You can view and download the raw data, cleaning logic, and final dashboard directly from my repository:
 
-📂 [View Project Files on GitHub](https://github.com/alexsyj)
+📂 [View Project Files on GitHub](https://github.com/alexsyj/cozy_crumb)
