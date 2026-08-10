@@ -7,7 +7,7 @@ tags: [Power Query, Analytics, Excel, Health Data]
 
 This project demonstrates a full data pipeline within Microsoft Excel—starting from a messy **CSV export** and ending with an **interactive dashboard** that identifies correlations between activity, sleep, and stress.
 
-## 1. Data Preparation & Cleaning
+## Data Preparation & Cleaning
 
 #### Raw Data Preview (CSV)
 Before cleaning: Notice the unformatted headers and raw sensor values.
@@ -21,7 +21,7 @@ The original file, `unclean_smartwatch_health_data.csv`, contained raw sensor lo
 > * Used **Power Query** to standardize column headers and fix data types.
 > * Handled missing Heart Rate and Blood Oxygen values to ensure statistical accuracy.
 
-## 2. Feature Engineering
+## Feature Engineering
 
 #### Processed Data (XLSX)
 After processing: Headers are cleaned, and new calculated columns have been engineered.
@@ -35,7 +35,7 @@ I moved beyond basic cleaning to create **derived metrics** that provide deeper 
 
 *Resulting file: `clean_data_1.xlsx`*
 
-## 3. Key Visual Analysis
+## Key Visual Analysis
 
 ### Sleep Duration vs. Stress Level
 This Pivot Chart identifies the "recovery point" where stress levels drop significantly relative to sleep hours.
