@@ -20,7 +20,10 @@ Load the required R packages for analysis.
 
 ```r
 library(tidyverse)
+mtcars
 ```
+
+![2026-08-11-211523.png](/assets/images/2026-08-11-211523.png)
 
 #### **1.2 Clean Dataset**
 Explore the summary of the `mtcars` dataset.
@@ -29,6 +32,7 @@ mtcars is already loaded within default R itself so no need to worry.
 ```r
 summary(mtcars)
 ```
+![2026-08-11-211535.png](/assets/images/2026-08-11-211535.png)
 
 ---
 
@@ -40,3 +44,5 @@ Visualize the distribution of miles per gallon (`mpg`) using a histogram.
 ```r
 ggplot(mtcars, aes(x = mpg)) + geom_histogram(bins = 10)
 ```
+
+![2026-08-11-211553.png](/assets/images/2026-08-11-211553.png)
