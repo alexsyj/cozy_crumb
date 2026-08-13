@@ -3,6 +3,7 @@ title: "Assignment 0"
 date: 2025-01-15 00:00:00 +0000
 categories: [Academics, STAC33]
 tags: [r, quarto, ggplot]
+author: Youngjin Song
 ---
 
 # Assignment 0

@@ -6,7 +6,7 @@ tags: [semiconductor, 8대공정, hardware-engineering, tech-study]
 layout: post
 ---
 
-## What is a semiconductor?
+### What is a semiconductor?
 
 Before we get into semiconductors we have to first know these two first:
 
