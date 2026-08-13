@@ -10,8 +10,8 @@ layout: post
 
 Before we get into semiconductors we have to first know these two first:
 
--Conductor: Electricity basically flows
--Insulator: Electricity doesn't flow.
+- Conductor: Electricity basically flows
+- Insulator: Electricity doesn't flow.
 
 Semiconductor on the other hand acts as both conductor and insulator depending on the conditions. eg. Silicon
 
@@ -70,7 +70,7 @@ Test the raw wafer sheet to seperate working dies from defective ones.
 
 ## 8. Packaging
 
-slice the wafer into individual chips, then seal them inside protective black, dark, plastic casing 
+slice the wafer into individual chips, then seal them inside protective black, dark, plastic casing.
 
 ---
 
