@@ -2,7 +2,7 @@
 title: "SECS/GEM Protocol"
 author: Youngjin Song
 date: 2026-04-22 14:00:00 +0900
-categories: [Semiconductor, Fab Automation]
+categories: [DomainKnowledge, Semiconductor]
 tags: [secs-gem, hsms, equipment-software, linux]
 layout: post
 ---
