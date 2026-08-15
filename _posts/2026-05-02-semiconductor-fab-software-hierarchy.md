@@ -27,7 +27,9 @@ Handles:
 
 # Enter Semiconductor-Specific Automation
 
-- EAP (Equipment Automation Program): Translates MES commands into machine protocol actions using **SECS/GEM** or **OPC-UA**
+- ***EAP*** (Equipment Automation Program): Translates MES commands into machine protocol actions using **SECS/GEM** or **OPC-UA**
+EAP IS ***SUPER CRITICAL CUZ*** **EAP plays the role of communicating with and controlling equipment in the middle of equipment automation**.
+
 - Equipment (장비) : processing tools on the fab floor (etchers, deposition chambers, aligners)
 - MCS (Material Control System): Transport system. Basically, as an example it directs **OHT - Overhead Hoist Transport** , material storage hub like **Stocker** and sealed wafer containers like **FOUPS** to move wafers from tool -> another tool across the factory without human interaction.....!
 ![2026-08-15-022854.png](/assets/images/2026-08-15-022854.png)
