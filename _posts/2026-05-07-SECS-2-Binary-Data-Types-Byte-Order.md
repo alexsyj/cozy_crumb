@@ -1,7 +1,7 @@
 ---
 title: "SECS-2 Data Representation: Data Formats, Binary Encoding, and Endianness"
 date: 2026-05-07 20:00:00 +0900
-categories: [Semiconductor, Low Level Engineering]
+categories: [DomainKnowledge, Semiconductor]
 tags: [secs-2, data-types, endianness, binary-encoding, network-sockets]
 math: true
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Solve Yield Loss -> Advanced Process Control: Run-to-Run (R2R) and EWMA Algorithms"
 date: 2026-05-10 21:00:00 +0900
-categories: [Semiconductor, Process Control]
+categories: [DomainKnowledge, Semiconductor]
 tags: [cmp, r2r, run-to-run, ewma, recipe-control, fab-automation]
 math: true
 ---
