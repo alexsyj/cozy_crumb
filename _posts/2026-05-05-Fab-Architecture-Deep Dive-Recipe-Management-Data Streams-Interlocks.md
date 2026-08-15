@@ -1,6 +1,6 @@
 ---
 title: "Fab Architecture Deep Dive: Recipe Management, Data Streams, and Interlocks"
-date: 2026-08-15 18:00:00 +0900
+date: 2026-05-05 18:00:00 +0900
 categories: [Semiconductor, Fab Architecture]
 tags: [rms, fdc, tracking-data, interlock, middleware, mes, eap]
 math: true

@@ -1,7 +1,7 @@
 ---
 title: "FA (Factory Automation)"
 author: Youngjin Song
-date: 2026-04-15 14:00:00 +0900
+date: 2026-05-02 14:00:00 +0900
 categories: [DomainKnowledge, Semiconductor]
 tags: [mes, eap, mcs, erp, scm, fab-automation, secs-gem, semiconductor]
 math: true
