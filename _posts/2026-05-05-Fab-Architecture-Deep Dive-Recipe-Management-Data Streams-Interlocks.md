@@ -33,4 +33,7 @@ Every wafer product needs a specific process recipe. Imagine making instant rame
 
 ![2026-08-15-072304.png](/assets/images/2026-08-15-072304.png)
 
+Here is basically a summary of the entire thing. 
+
+![2026-08-15-072540.png](/assets/images/2026-08-15-072540.png)
 ---
