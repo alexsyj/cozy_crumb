@@ -1,9 +1,9 @@
 ---
-title: "Understanding baisc Semiconductor Fab Architecture"
+title: "Understanding baisc Semiconductor Fab Architecture part one"
 author: Youngjin Song
 date: 2026-04-14 14:00:00 +0900
 categories: [DomainKnowledge, Semiconductor]
-tags: [mes, fab-automation, lot-tracking, semiconductor]
+tags: [fab-automation, lot-tracking, semiconductor]
 math: true
 layout: post
 ---
