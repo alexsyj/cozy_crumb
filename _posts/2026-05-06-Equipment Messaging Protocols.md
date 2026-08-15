@@ -1,6 +1,6 @@
 ---
 title: "Equipment Messaging Protocols: SECS/GEM (S2F41), OPC-UA, and ROS2 Integration"
-date: 2026-08-15 19:00:00 +0900
+date: 2026-05-06 19:00:00 +0900
 categories: [Semiconductor, Protocols]
 tags: [secs-gem, opc-ua, ros2, eap, recipe-selection, s2f41]
 math: true
