@@ -191,3 +191,4 @@ ALLOWED MAX DELAYS:
 - T4(Inter-Block): 10.0 sec. between consecutive blocks in a multi-block transfer..
 
 ![2026-08-14-072637.png](/assets/images/2026-08-14-072637.png)
+
