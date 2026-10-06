@@ -9,7 +9,7 @@ author: Youngjin Song
 # Practice
 
 2025 Winter Semester at University of Toronto Class
-STAC33: Assignment 0 basics.
+Basics in R in a Statistics class
 An example using Quarto and Rstudio I built the html file
 
 ---
