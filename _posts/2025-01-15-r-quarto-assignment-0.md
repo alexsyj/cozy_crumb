@@ -1,16 +1,16 @@
 ---
-title: "Assignment 0"
+title: "Code using R, Use quarto to create html document"
 date: 2025-01-15 00:00:00 +0000
 categories: [Academics, STAC33]
 tags: [r, quarto, ggplot]
 author: Youngjin Song
 ---
 
-# Assignment 0
+# Practice
 
 2025 Winter Semester at University of Toronto Class
 STAC33: Assignment 0 basics.
-An example using Quarto and Rstudio I built the html file called assignment0.html which i've submitted in my quercus(uoft submission page)
+An example using Quarto and Rstudio I built the html file
 
 ---
 
