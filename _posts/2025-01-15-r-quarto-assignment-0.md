@@ -1,7 +1,7 @@
 ---
 title: "Code using R, Use quarto to create html document"
 date: 2025-01-15 00:00:00 +0000
-categories: [Academics, STAC33]
+categories: [Academics, R]
 tags: [r, quarto, ggplot]
 author: Youngjin Song
 ---
