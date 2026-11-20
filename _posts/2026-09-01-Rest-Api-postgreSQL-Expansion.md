@@ -1,7 +1,7 @@
 ---
 title: "Rest Api Expansion on Hospital Database Management & Patient Risk Analysis"
 date: 2026-09-01 12:00:00 +0900
-categories: [Data Analysis, SQL]
+categories: [Projects, SQL]
 tags: [PostgreSQL, SQL, Health Analytics, Database Management, docker, ubuntu, wsl, anaconda]
 ---
 

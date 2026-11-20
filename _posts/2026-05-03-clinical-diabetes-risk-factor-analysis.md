@@ -1,7 +1,7 @@
 ---
 title: "Clinical Diabetes Risk Factor Analysis"
 date: 2026-05-03 12:00:00 +0900
-categories: [Data Analysis, Python]
+categories: [Projects, Python]
 tags: [Python, Pandas, Data Cleaning, Health Analytics]
 ---
 

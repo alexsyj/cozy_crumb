@@ -1,7 +1,7 @@
 ---
 title: "Smartwatch Health Data: From Raw CSV to Clinical Insights"
 date: 2026-01-14 12:00:00 +0900
-categories: [Data Analysis, Excel]
+categories: [Projects, Excel]
 tags: [Power Query, Analytics, Excel, Health Data]
 ---
 
