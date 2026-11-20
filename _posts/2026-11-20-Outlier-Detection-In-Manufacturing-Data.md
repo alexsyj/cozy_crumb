@@ -46,8 +46,9 @@ These phenomena are highly likely to indicate a process anomaly.
 
 Therefore, before removing outliers, it is essential to first analyze why they occurred.
 
-## 이상치를 탐지하는 대표적인 방법
-| 방법                        | 특징                       |
+## Common Methods for Outlier Detection
+
+| Method                        | Characteristics                       |
 | ------------------------- | ------------------------ |
 | Z-score                   | Based on mean and standard deviation              |
 | Modified Z-score          | Based on the median, making it robust to outliers     |
