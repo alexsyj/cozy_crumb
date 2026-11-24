@@ -3,7 +3,7 @@ title: Outlier Detection in Manufacturing Data
 img_path: /assets/images/
 math: true
 author: Alex
-date: 2025-11-04
+date: 2026-11-05
 category: [Manufacturing, Statistics, Outlier Detection]
 tags:
  - Tukey Method
